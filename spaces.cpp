@@ -5,7 +5,7 @@ int main() {
     char current, next;
     std::ifstream file;
 
-    file.open("../recepcja.js");
+    file.open("../spacje.txt");
 
     current = file.get();
 

@@ -102,5 +102,3 @@ function klikRezerwacja(numer) {
     const nazwa = "idreztab-" + numer;
     document.getElementById(`${nazwa}`).submit();
 }
-
-Testowa. Linijka. Z. Wstawionymi. Spacjami. Na.Miejscu.
