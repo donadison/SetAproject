@@ -14,8 +14,9 @@ int main() {
         if (current == '.' || current == ','){
             next = file.get();
             if (next != ' ') {
-                std::cout << ' ' << next;
+                std::cout << ' ';
             }
+            std::cout << next;
         }
         current = file.get();
     }
