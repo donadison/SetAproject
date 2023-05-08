@@ -16,7 +16,8 @@ NAMEC defenestracja|Defenestracja
 ONAW [(]
 ZNAW [)]
 SPACE [ ]
-CODE {CODEZ}|{CODEC}|{CODES}
+CODE CODEZ|CODEC|CODES
+
 COMMAND {CODE};
 
 
