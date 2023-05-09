@@ -1,0 +1,20 @@
+int a=6;
+
+/* double a=10;int gg=23;*/
+
+double c=11;
+
+suicide 10 (int a=5);
+
+suicide 10 (defenestracja (int a=5))
+
+defenestracja (int a=5)
+
+string a=text;
+
+char a=a;
+
+suicide x (KOMENDA)
+
+gdzie x= liczba
+KOMENDA= deklaracja zmiennej/deklaracja coutu
