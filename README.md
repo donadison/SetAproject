@@ -19,7 +19,7 @@ Dodanie spacji po kropkach i przecinkach tam, gdzie ich brakuje – plik `spaces
 
 
 #### Zadanie 5
-10 najczęściej występujących słów w Biblii – plik `BibleLicznik.cpp` + `Bible.txt` z treścią Biblii (dostępnej w domenie publicznej, pobrano ze strony [Project Gutenberg](https://www.gutenberg.org/ebooks/10)).
+10 najczęściej występujących słów w Biblii – plik `main.cpp` + `Bible.txt` z treścią Biblii (dostępnej w domenie publicznej, pobrano ze strony [Project Gutenberg](https://www.gutenberg.org/ebooks/10)).
 
 
 #### Zadanie 6
