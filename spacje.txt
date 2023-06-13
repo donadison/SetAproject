@@ -1,2 +1,0 @@
-linijka. ze. spacjami. po, kropkach, i, przecinkach
-linijka.bez.spacji,po,kropkach,i,przecinkach
