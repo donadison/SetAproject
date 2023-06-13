@@ -1,0 +1,20 @@
+yacc: Syntax error at line 1, token=TYPE
+yacc: Syntax error at line 1, token=TYPE
+yacc: Syntax error at line 1, token=TYPE
+LexToken(NAMES,'suicide',1,0)
+LexToken(SPACE,' ',1,7)
+LexToken(NUMBER,3,1,8)
+LexToken(SPACE,' ',1,9)
+LexToken(KOT,'int a = 666',1,22)
+LexToken(END,'~',1,23)
+3   int a = 666
+0
+int a = 666
+None
+1
+int a = 666
+None
+2
+int a = 666
+None
+None
