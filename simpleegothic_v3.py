@@ -9,6 +9,7 @@ tokens = (
     'ST',
     'NAMES',
     'NAMEC',
+    'DOUBLE',
     'NUMBER',
     'ID',
     'EQ',
@@ -16,6 +17,7 @@ tokens = (
     'ASUM',
     'POW',
     'DIV',
+    'ZNAK',
     'TEXT',
     'ONAW',
     'KOT',
@@ -55,6 +57,11 @@ def t_NAMEC(t):
     return t
 
 
+def t_DOUBLE(t):
+    r'[0-9]+\.[0-9]*'
+    return t
+
+
 def t_NUMBER(t):
     r'[0-9]+'
     t.value = int(t.value)
@@ -71,8 +78,18 @@ def t_EQ(t):
     return t
 
 
+def t_ZNAK(t):
+    r'\"[A-Za-z0-9]\"'
+    v = t.value
+    t.value = v[1]
+    return t
+
+
 def t_TEXT(t):
     r'\"[A-Za-z0-9]+\"'
+    v = t.value
+    last = len(v)
+    t.value = v[1:last-1]
     return t
 
 
@@ -100,7 +117,7 @@ lexer = lex.lex()
 token_list = []
 
 # Test the lexer
-data = 'int s=3; double a = "bleee";'
+data = 'int x = 9; defenestracja (int a = 4; double x = 3.14;); string f = "d"; char ass = "dcsdc";'
 lexer.input(data)
 for token in lexer:
     token_list.append(token)
