@@ -24,11 +24,12 @@ tokens = (
     'END',
 )
 
+
 def t_TYPE(t):
     r'int\ |double\ '
     v = len(t.value)
-    if t.value[v-1] == " ":
-        t.value = t.value[0:v-1]
+    if t.value[v - 1] == " ":
+        t.value = t.value[0:v - 1]
     return t
 
 
@@ -74,10 +75,10 @@ def t_TEXT(t):
     r'\"[A-Za-z0-9]+\"'
     return t
 
-#
-# def t_END(t):
-#     r'\s*\~'
-#     return t
+
+def t_END(t):
+    r'\s*\;'
+    return t
 
 
 def t_ONAW(t):
@@ -99,9 +100,8 @@ lexer = lex.lex()
 token_list = []
 
 # Test the lexer
-data = 'int s=3 double a = "bleee"'
+data = 'int s=3; double a = "bleee";'
 lexer.input(data)
 for token in lexer:
     token_list.append(token)
     print(token)
-

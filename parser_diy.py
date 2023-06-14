@@ -22,79 +22,66 @@ info = {
 }
 
 
-def var(type, id, number):
-    variables[id.value] = (type.value, number.value)
-    print("Zmienna typu", type.value, "nazwa", id.value, "wartość", number.value)
-    print(variables)
+def var(tokens):
+    syntax = ['TYPE', 'ID', 'EQ', 'NUMBER']
+    match = [(token.type == synt) for token, synt in zip(tokens, syntax)]
+    print(match)
+    if False in match:
+        print("Syntax error:", tokens[3].value, 'is not a valid', tokens[0].value)
+    else:
+        v_type = tokens[0].value
+        v_name = tokens[1].value
+        v_value = tokens[3].value
+        print('Zmienna typu', v_type, 'nazwa', v_name, 'wartość', v_value)
 
 
 polecenia = {
     'var': var,
 }
 
+
 def group_tokens(tokens):
     # tymczasowa lista na najblizsze polecenie
     temp = []
-    for token in tokens:
+    while len(tokens) > 0:
+        token = tokens.popleft()
         match token.type:
             case 'TYPE':
-                stack.append('var')
-                temp.append(token)
-                # if info["next"] == 'Any':
-                #     # info["group_start"] += 1
-                #     # .append(token)
-                #     # info["next"] = 'ID'
-                #     # info["type"] = token.value
-                #     # queue.append('var')
-                # else:
-                #     print("Blad skladniowy: 'TYPE'")
-            case 'ID':
-                if stack[-1] == 'var':
+                while token.type != 'END':
                     temp.append(token)
-                # if info["next"] == 'ID':
-                #     # temp.append(token)
-                #     # info["next"] = 'EQ'
-                # else:
-                #     print("Blad skladniowy: 'ID'")
-            case 'EQ':
-                pass
-                # if info["next"] == 'EQ':
-                #     temp.append(token)
-                #     info["next"] = 'VALUE'
-                # else:
-                #     print("Blad skladniowy: 'EQ'")
-            case 'NUMBER':
-                if stack[-1] == 'var':
-                    temp.append(token)
-                # if info["next"] == 'VALUE' and (info["type"] == 'int' or 'double'):
-                #     temp.append(token)
-                # #     # if queue[-1] == 'var':
-                #
-                # else:
-                #     print("Blad skladniowy 'NUMBER'")
-            case 'TEXT':
-                if stack[-1] == 'var':
-                    temp.append(token)
-            case "NAMES":
-                stack.append('suicidie')
+                    token = tokens.popleft()
+                queue.append(('var', *temp))
+                temp.clear()
+            case 'END':
+                print(token, "END")
+            case 'NAMEC':
+                token = tokens.popleft()
+                while token.type != 'END':
+                    if token.type == 'ONAW':
+                        stack.append(token)
+                    while token.type != 'ZNAW':
+                        token = tokens.popleft()
+                        if token.type != 'END':
+                            temp.append(token)
+                        else:
+                            queue.append(('var', temp))
+                            queue.append(('codec', temp))
+                            temp.clear()
+                    stack.pop()
             case _:
-                print(token.type, token.value)
-        if stack[-1] == 'var' and len(temp) == 3:
-            queue.append(('var', temp))
-            stack.pop()
-            temp = []
-    print(temp)
+                print("Syntax error")
 
 
 group_tokens(token_list)
 
 for item in queue:
-    name, params = item
-    polecenia[name](*params)
+    params = item[1:]
+    name = item[0]
+    # print(name, params)
+    polecenia[name](params)
 
-print(stack)
-print(queue)
-
+# print(stack)
+# print(queue)
 
 """
 TYPE    :   sprawdź następne 3 tokeny ID EQ (NUMBER | TEXT | ZNAK), jeśli się zgadza zapisz zmienną
