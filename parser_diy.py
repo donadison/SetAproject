@@ -26,12 +26,16 @@ def var(tokens):
     syntax = ['TYPE', 'ID', 'EQ', 'NUMBER']
     match = [(token.type == synt) for token, synt in zip(tokens, syntax)]
     print(match)
+    # todo rozbudować warunki, żeby nie przyjmowało double jako inta np,
+    #  ew reagowało na syntax error w jakimkolwiek innym miejscu (błąd z typem wywalać podobnie jak niżej,
+    #  a inne jako "błąd na pozycji takiej i srakiej na linii takiej" -- to te dwie ostatnie cyferki w tokenie)
     if False in match:
         print("Syntax error:", tokens[3].value, 'is not a valid', tokens[0].value)
     else:
         v_type = tokens[0].value
         v_name = tokens[1].value
         v_value = tokens[3].value
+        variables[v_name] = (v_type, v_value)
         print('Zmienna typu', v_type, 'nazwa', v_name, 'wartość', v_value)
 
 
